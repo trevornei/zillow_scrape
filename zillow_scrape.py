@@ -3,10 +3,16 @@ import requests
 from bs4 import BeautifulSoup
 
 # URL that we want to scrape.
-url = "https://www.zillow.com/missoula-mt/?searchQueryState=%7B%22pagination%22%3A%7B%7D%2C%22isMapVisible%22%3Atrue%2C%22mapBounds%22%3A%7B%22west%22%3A-114.76198615332031%2C%22east%22%3A-113.38732184667968%2C%22south%22%3A46.532002850210795%2C%22north%22%3A47.29000274332481%7D%2C%22usersSearchTerm%22%3A%22Missoula%2C%20MT%22%2C%22regionSelection%22%3A%5B%7B%22regionId%22%3A53359%2C%22regionType%22%3A6%7D%5D%2C%22filterState%22%3A%7B%22sort%22%3A%7B%22value%22%3A%22globalrelevanceex%22%7D%2C%22ah%22%3A%7B%22value%22%3Atrue%7D%7D%2C%22isListVisible%22%3Atrue%7D"
+url = "https://www.zillow.com/missoula-mt/"
+
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36',
+}
 
 # Get request to the URL
-response = requests.get(url)
+# Had to add headers to mimic a browser request. 
+# Zillow knows I am sending THE BOTS.
+response = requests.get(url, headers=headers)
 
 #Validate that the request went through.
 if response.status_code == 200:
